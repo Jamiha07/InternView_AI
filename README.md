@@ -1,179 +1,144 @@
-# InternView AI 🌟
-
-> ML-powered intern performance prediction — XGBoost + Flask + React
-
-![Python](https://img.shields.io/badge/Python-3.11-yellow?style=flat-square)
-![XGBoost](https://img.shields.io/badge/XGBoost-82.8%25_R²-green?style=flat-square)
-![React](https://img.shields.io/badge/React-18-61DAFB?style=flat-square)
-![Flask](https://img.shields.io/badge/Flask-3.x-white?style=flat-square)
-
+# InternView AI 🧠
+ 
+> **End-to-end machine learning pipeline** that predicts intern performance using a real trained XGBoost model — from synthetic data generation all the way to a live React dashboard.
+ 
+![Python](https://img.shields.io/badge/Python-3.11-3776AB?style=flat&logo=python&logoColor=white)
+![Flask](https://img.shields.io/badge/Flask-3.0-000000?style=flat&logo=flask)
+![React](https://img.shields.io/badge/React-18-61DAFB?style=flat&logo=react&logoColor=black)
+![XGBoost](https://img.shields.io/badge/XGBoost-2.x-189ABE?style=flat)
+![Vite](https://img.shields.io/badge/Vite-5-646CFF?style=flat&logo=vite&logoColor=white)
+ 
 ---
 
-## What This Project Does
 
-InternView AI is a complete end-to-end machine learning project that:
+ <img width="1913" height="907" alt="image" src="https://github.com/user-attachments/assets/a6f6f2ff-3d5b-4e90-b592-d9bc3ea64e04" />
+<img width="1910" height="903" alt="image" src="https://github.com/user-attachments/assets/c7954c8c-4a7f-4b8e-a481-34a442cb480b" />
+<img width="1908" height="908" alt="image" src="https://github.com/user-attachments/assets/42abe903-6468-43b4-bc25-2d2f6dcc2c9d" />
+<img width="1905" height="895" alt="image" src="https://github.com/user-attachments/assets/79f0264a-a2eb-472f-8e0d-8723bacf66d7" />
 
-1. **Generates** a realistic synthetic dataset of 573 intern records across 9 KPIs
-2. **Trains** Random Forest and XGBoost models, then optimises XGBoost to **82.8% R²**
-3. **Deploys** the trained model via a Flask REST API
-4. **Visualises** predictions in a real-time React dashboard with interactive sliders
 
+## What It Does
+ 
+InternView AI is a full-stack ML application that takes 9 intern performance KPIs as inputs and produces an instant performance score (0–100%) along with a 4-tier classification — all powered by a real pre-trained XGBoost model served via a Python REST API.
+ 
+**Key capabilities:**
+ 
+- **Live Performance Simulator** — Tune 9 sliders for an intern's metrics and receive an instant prediction from the actual `.pkl` model. No mock data — real inference every time.
+- **4-Tier Classification** — Scores are automatically bucketed into: `Struggle` (< 50%), `Average` (50–68%), `Excel` (68–80%), and `High Excel` (80%+).
+- **Feature Impact Breakdown** — Visual bar chart showing which KPIs drive the score, using the real `feature_importances_` from the trained model. Task Completion (26.9%) and Deadline Adherence (24.3%) are the top drivers.
+- **XGBoost vs Random Forest Delta** — Side-by-side comparison of the two models. XGBoost consistently outperforms the RF baseline by ~2%.
+- **AI-Generated Insights** — Contextual recommendations generated per-prediction (e.g., "Improving deadline adherence could push to High Excel").
+- **Data Explorer** — Browse and inspect the actual `intern_data.csv` (573 rows, 11 columns) directly inside the UI.
+- **About / Tech Stack Page** — Full ML pipeline breakdown: data generation → EDA → baseline models → XGBoost optimization → serialization → deployment.
+---
+ 
+## ML Model
+ 
+The model was built and trained in a Jupyter Notebook (`notebook/Intern_Performance_AI_Project.ipynb`) following this pipeline:
+ 
+| Step | Details |
+|------|---------|
+| **Data Generation** | 573 synthetic intern records created with NumPy (`np.random.seed(21)`) using real-world-like distributions across 9 KPIs |
+| **EDA & Preprocessing** | Exploratory analysis via pandas. `StandardScaler` fitted on `X_train` to normalize all 9 features to zero mean, unit variance |
+| **Baseline Models** | Random Forest (200 trees, ~79% R²) and default XGBoost (200 estimators, ~80% R²) |
+| **XGBoost Optimization** | Tuned: `learning_rate=0.04`, `n_estimators=300`, `max_depth=2` → **84.6% test R²**, train-test gap of only ~1.2% |
+| **Serialization** | Optimized XGBoost + fitted StandardScaler saved as `.pkl` files via `pickle` |
+ 
+### Performance KPIs (Features)
+ 
+| Feature | Description |
+|---------|-------------|
+| `task_completion_rate` | % of tasks fully completed |
+| `avg_task_time_hours` | Average hours per task (lower is better) |
+| `feedback_rating` | Mentor quality score (1–5) |
+| `attendance_rate` | % of days present |
+| `punctuality_score` | Score out of 10 |
+| `problem_solving_rating` | Rating out of 5 |
+| `team_collaboration_score` | Score out of 10 |
+| `training_completion_pct` | % of training modules completed |
+| `deadline_adherence_ratio` | On-time tasks / total tasks |
+ 
 ---
 
-## Project Structure
-
+ 
+## Tech Stack
+ 
+### Machine Learning & Data
+- **Python 3.11** — Core language
+- **XGBoost 2.x** — Champion model (84.6% R²)
+- **scikit-learn 1.4** — `StandardScaler`, `train_test_split`
+- **pandas 2.x** — Data manipulation and EDA
+- **NumPy 1.26** — Synthetic data generation
+- **pickle** — Model serialization
+- **matplotlib / seaborn** — EDA plots in the notebook
+### Backend
+- **Flask 3.x** — REST API serving predictions
+- **flask-cors** — Cross-origin support for the Vite dev server
+- **gunicorn** — Production WSGI server
+### Frontend
+- **React 18** — UI framework
+- **Vite 5** — Build tool and dev proxy
+- **Recharts** — Live bar/line charts for feature impact and model comparison
+- **Space Grotesk** — Primary typeface
+- **JetBrains Mono** — Data / code typeface
+### Dev & Tooling
+- **Jupyter Notebook** — ML development environment
+- **Node.js 20** — Frontend build runtime
+- **npm** — Package management
+---
+ 
+## Getting Started
+ 
+### Prerequisites
+- Python 3.11+
+- Node.js 20+
+- npm
+### Quick Start (one command)
+ 
+```bash
+git clone https://github.com/your-username/internview-ai.git
+cd internview-ai
+chmod +x start.sh
+./start.sh
 ```
-InternView_AI/
-│
-├── notebook/
-│   └── Intern_Performance_AI_Project.ipynb   ← Full ML development notebook
-│
-├── data/
-│   └── intern_data.csv                        ← 573-row synthetic intern dataset
-│
-├── models/
-│   ├── xgboost_dashboard_model.pkl            ← Trained & optimised XGBoost model
-│   └── scaler.pkl                             ← Fitted StandardScaler
-│
-├── backend/
-│   ├── app.py                                 ← Flask API (loads .pkl, serves /api/predict)
-│   └── requirements.txt                       ← Python dependencies
-│
-├── frontend/
-│   ├── src/
-│   │   ├── main.jsx                           ← React entry point
-│   │   ├── App.jsx                            ← Page router
-│   │   ├── index.css                          ← Global styles (yellow/grey/black theme)
-│   │   ├── api.js                             ← Fetch helpers for Flask API
-│   │   ├── components.jsx                     ← Nav, Slider, StatCard, TierBadge
-│   │   ├── HomePage.jsx                       ← Landing page with stats & preview
-│   │   ├── SimulatorPage.jsx                  ← Interactive prediction dashboard
-│   │   └── AboutPage.jsx                      ← Tech stack & pipeline breakdown
-│   ├── public/
-│   │   └── index.html
-│   ├── package.json
-│   └── vite.config.js                         ← Dev proxy → Flask :5000
-│
-└── README.md
-```
-
+ 
+This installs all dependencies and starts both servers:
+- **Frontend** → http://localhost:3000
+- **API** → http://localhost:5000/api/health
 ---
-
-## Quick Start
-
-### 1 — Backend (Flask)
-
+ 
+### Manual Setup
+ 
+**Backend:**
 ```bash
 cd backend
 pip install -r requirements.txt
 python app.py
-# → Running on http://localhost:5000
 ```
-
-### 2 — Frontend (React + Vite)
-
+ 
+**Frontend** (in a separate terminal):
 ```bash
 cd frontend
 npm install
 npm run dev
-# → Running on http://localhost:3000
 ```
-
-Open **http://localhost:3000** — the Vite dev server proxies `/api/*` calls to Flask automatically.
-
----
-
-## API Endpoints
-
-| Method | Path | Description |
-|--------|------|-------------|
-| GET  | `/api/health`         | Health check + model info |
-| POST | `/api/predict`        | Run XGBoost prediction (JSON body with 9 features) |
-| GET  | `/api/dataset/stats`  | Label counts, score stats from intern_data.csv |
-| GET  | `/api/dataset/sample` | 10 random rows from the dataset |
-
-### Example `/api/predict` request
-
-```json
-{
-  "task_completion_rate":     0.85,
-  "avg_task_time_hours":      4.0,
-  "feedback_rating":          4.2,
-  "attendance_rate":          0.95,
-  "punctuality_score":        7.5,
-  "problem_solving_rating":   3.8,
-  "team_collaboration_score": 7.2,
-  "training_completion_pct":  0.88,
-  "deadline_adherence_ratio": 0.93
-}
+ 
+### Environment Variables
+ 
+Copy `.env.example` to `.env` and adjust if needed:
+ 
+```bash
+cp .env.example .env
 ```
-
-### Example response
-
-```json
-{
-  "score_pct": 82.4,
-  "raw_score": 0.824,
-  "rf_score":  80.2,
-  "delta":     2.2,
-  "tier": {
-    "label": "High Excel",
-    "emoji": "🌟",
-    "color": "#F5C518"
-  },
-  "insights": [
-    "Excellent across all metrics — top tier performance!",
-    "Consider mentoring other interns."
-  ],
-  "feature_impact": [
-    { "name": "Task Completion Rate", "importance": 0.2694, "value": 0.81 },
-    ...
-  ]
-}
+ 
+```env
+FLASK_ENV=development
+FLASK_PORT=5000
+VITE_API_BASE=/api
 ```
-
+ 
 ---
-
-## The 9 KPIs
-
-| Feature | Weight | Range |
-|---------|--------|-------|
-| task_completion_rate | 25% | 0.2 – 1.0 |
-| deadline_adherence_ratio | 12% | 0.0 – 1.0 |
-| feedback_rating | 15% | 1.0 – 5.0 |
-| attendance_rate | 15% | 0.35 – 1.0 |
-| punctuality_score | 10% | 1.0 – 10.0 |
-| problem_solving_rating | 10% | 1.0 – 5.0 |
-| team_collaboration_score | 8% | 1.0 – 10.0 |
-| training_completion_pct | 5% | 0.1 – 1.0 |
-| avg_task_time_hours | –5% penalty | 1.0 – 20.0 |
-
----
-
-## Model Results
-
-| Model | Test R² | Notes |
-|-------|---------|-------|
-| Random Forest (baseline) | ~79% | 200 trees |
-| XGBoost (baseline) | ~80% | 200 estimators |
-| **XGBoost (optimised)** | **82.8%** | lr=0.04, 300 trees, max_depth=2 |
-| Train-Test Gap | ~1.2% | No overfitting |
-
----
-
-## Performance Tiers
-
-| Tier | Score Range |
-|------|-------------|
-| 🌟 High Excel | ≥ 80% |
-| ✅ Excel | 68% – 79% |
-| 📊 Average | 50% – 67% |
-| ⚠️ Struggle | < 50% |
-
----
-
-## Tech Stack
-
-**ML:** Python, pandas, NumPy, scikit-learn, XGBoost, matplotlib, seaborn, Jupyter  
-**Backend:** Flask, flask-cors, pickle, gunicorn  
-**Frontend:** React 18, Vite 5, Recharts, Space Grotesk, JetBrains Mono
+ 
+## License
+ 
+MIT — free to use, modify, and distribute.
