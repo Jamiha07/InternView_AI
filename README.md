@@ -41,7 +41,7 @@ The model was built and trained in a Jupyter Notebook (`notebook/Intern_Performa
 | **Data Generation** | 573 synthetic intern records created with NumPy (`np.random.seed(21)`) using real-world-like distributions across 9 KPIs |
 | **EDA & Preprocessing** | Exploratory analysis via pandas. `StandardScaler` fitted on `X_train` to normalize all 9 features to zero mean, unit variance |
 | **Baseline Models** | Random Forest (200 trees, ~79% R²) and default XGBoost (200 estimators, ~80% R²) |
-| **XGBoost Optimization** | Tuned: `learning_rate=0.04`, `n_estimators=300`, `max_depth=2` → **84.6% test R²**, train-test gap of only ~1.2% |
+| **XGBoost Optimization** | Tuned: `learning_rate=0.04`, `n_estimators=300`, `max_depth=2` → **84.6% test R²**, train-test gap of ~10.0% |
 | **Serialization** | Optimized XGBoost + fitted StandardScaler saved as `.pkl` files via `pickle` |
  
 ### Performance KPIs (Features)

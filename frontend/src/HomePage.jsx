@@ -21,7 +21,7 @@ export default function HomePage({ setPage }) {
   useEffect(() => { setTimeout(() => setPreviewVisible(true), 500) }, [])
 
   const features = [
-    { icon:'🧠', title:'XGBoost Engine',        desc:'Optimized gradient boosting — 300 estimators, lr=0.04, max_depth=2 — achieving 82.8% R² on 573 real intern records.' },
+    { icon:'🧠', title:'XGBoost Engine',        desc:'Optimized gradient boosting — 300 estimators, lr=0.04, max_depth=2 — achieving 84.6% R² on 573 real intern records.' },
     { icon:'⚡', title:'Live Simulation',         desc:'Tune 9 performance sliders and get an instant prediction from the actual trained .pkl model served via Flask.' },
     { icon:'📊', title:'Feature Impact',          desc:'See which KPIs drive the score using real model feature importances: task completion (26.9%) and deadline adherence (24.3%) lead.' },
     { icon:'🔄', title:'Model Delta View',        desc:'Compare XGBoost vs Random Forest predictions side-by-side. XGBoost consistently outperforms RF by ~2%.' },
@@ -87,7 +87,7 @@ export default function HomePage({ setPage }) {
       {/* ── Stats ── */}
       <section style={{ maxWidth: 900, margin: '0 auto 5rem', padding: '0 2rem' }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: 14 }}>
-          <StatCard value="82.8" suffix="%" label="XGBoost R² Score"         delay={100} />
+          <StatCard value="84.6" suffix="%" label="XGBoost R² Score"         delay={100} />
           <StatCard value="573"               label="Intern Records"          delay={250} />
           <StatCard value="9"                 label="Performance KPIs"        delay={400} />
           <StatCard value="300"               label="XGBoost Estimators"      delay={550} />

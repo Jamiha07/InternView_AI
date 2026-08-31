@@ -70,7 +70,7 @@ export default function SimulatorPage() {
             Performance <span style={{ color: '#F5C518' }}>Simulator</span>
           </h1>
           <p style={{ color: '#888', fontSize: 15 }}>
-            Adjust the intern's KPIs — the real trained XGBoost model (82.8% R²) predicts their score instantly.
+            Adjust the intern's KPIs — the real trained XGBoost model (84.6% R²) predicts their score instantly.
           </p>
         </div>
 

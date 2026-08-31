@@ -96,7 +96,7 @@ CORS(app)  # Allow React dev server cross-origin requests
 
 @app.route("/api/health", methods=["GET"])
 def health():
-    return jsonify({"status": "ok", "model": "XGBoost Optimized", "r2": 0.828})
+    return jsonify({"status": "ok", "model": "XGBoost Optimized", "r2": 0.846})
 
 
 @app.route("/api/predict", methods=["POST"])

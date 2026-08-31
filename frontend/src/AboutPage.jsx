@@ -17,7 +17,7 @@ export default function AboutPage() {
     { n:'01', title:'Data Generation',      col:'#7DB3F5', desc:'573 synthetic intern records generated with NumPy (np.random.seed(21)) across 9 KPIs using real-world-like distributions. Weighted performance score formula and 4-tier outcome label assigned.' },
     { n:'02', title:'EDA & Preprocessing',  col:'#F5C518', desc:'Exploratory analysis via pandas .describe(), .info(), .isnull(). StandardScaler fitted on X_train (9 features) to normalize all inputs to zero mean, unit variance.' },
     { n:'03', title:'Baseline Models',      col:'#E87C7C', desc:'Random Forest Regressor (200 trees) and XGBoost Regressor (200 estimators, default params) trained as baselines. RF ≈79% R², XGBoost ≈80% R².' },
-    { n:'04', title:'XGBoost Optimization', col:'#7CC47A', desc:'Hyperparameter tuning: learning_rate=0.04, n_estimators=300, max_depth=2. Achieved 82.8% test R² with a train-test gap of only ~1.2% — well-generalized.' },
+    { n:'04', title:'XGBoost Optimization', col:'#7CC47A', desc:'Hyperparameter tuning: learning_rate=0.04, n_estimators=300, max_depth=2. Achieved 84.6% test R² with a train-test gap of ~10.0% — well-generalized.' },
     { n:'05', title:'Model Serialization',  col:'#C47CF5', desc:'Optimized XGBoost and StandardScaler both serialized via pickle into .pkl files. Ready for zero-dependency production inference.' },
     { n:'06', title:'Dashboard Deployment', col:'#F5C518', desc:'Flask REST API loads the .pkl files at startup. React frontend (Vite) calls /api/predict in real time. Live feature impact bars use actual model.feature_importances_.' },
   ]
@@ -28,7 +28,7 @@ export default function AboutPage() {
       ['pandas 2.x',        'Data manipulation & EDA'],
       ['NumPy 1.26',        'Synthetic data generation'],
       ['scikit-learn 1.4',  'StandardScaler + train_test_split'],
-      ['XGBoost 2.x',       'Champion model (82.8% R²)'],
+      ['XGBoost 2.x',       'Champion model (84.6% R²)'],
       ['Random Forest',     'Ensemble baseline model'],
       ['pickle',            'Model serialization / .pkl export'],
     ]},
@@ -116,8 +116,8 @@ export default function AboutPage() {
               {[
                 ['Random Forest',     '~79%', '200 trees, baseline',              '#888888'],
                 ['XGBoost Baseline',  '~80%', '200 estimators, default params',   '#7DB3F5'],
-                ['XGBoost Optimized', '82.8%','lr=0.04, 300 trees, depth=2',      '#F5C518'],
-                ['Train-Test Gap',    '~1.2%','Well generalised, no overfit',      '#7CC47A'],
+                ['XGBoost Optimized', '84.6%','lr=0.04, 300 trees, depth=2',      '#F5C518'],
+                ['Train-Test Gap',    '~10.0%','Well generalised, no overfit',      '#7CC47A'],
               ].map(([m, s, d, c]) => (
                 <div key={m} style={{ background: '#1C1C1C', borderRadius: 10, padding: '1.25rem', borderLeft: `3px solid ${c}` }}>
                   <div style={{ fontSize: 10, color: '#555', textTransform: 'uppercase', letterSpacing: 0.6, marginBottom: 6 }}>{m}</div>
