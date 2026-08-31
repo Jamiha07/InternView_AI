@@ -8,6 +8,8 @@
 ![XGBoost](https://img.shields.io/badge/XGBoost-2.x-189ABE?style=flat)
 ![Vite](https://img.shields.io/badge/Vite-5-646CFF?style=flat&logo=vite&logoColor=white)
  
+**🔗 Live demo:** [internview-ai.onrender.com](https://internview-ai.onrender.com)
+ 
 ---
 
 
